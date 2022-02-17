@@ -14,7 +14,7 @@ function App() {
     if (input != "") {
       fetch("https://api.github.com/search/users?q=" + input, {
         headers: {
-          authorization: "token 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"
+
         },
         name: input
       }
