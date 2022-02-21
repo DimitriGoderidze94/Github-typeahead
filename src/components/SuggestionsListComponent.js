@@ -1,6 +1,10 @@
 
-
 const SuggestionsListComponent = (props) => {
+  if (!props.requestStatus) {
+    return <div className="noSuggestions">
+      Request Limit Exeeded, Try Later
+    </div>
+  }
   return props.filteredSuggestions.length ? (
     <div className="suggestions">
       {props.filteredSuggestions.map((suggestion, index) => {
@@ -8,11 +12,11 @@ const SuggestionsListComponent = (props) => {
         return (
           <div
             className="suggestionactive" key={suggestion} onClick={props.onClick}>
-            <div className="nameContainer">
-              {suggestion}
-            </div>
             <div className="avatarContainer">
               <img className="avatarImg" src={props.avatarArray[index]} alt="" />
+            </div>
+            <div className="nameContainer">
+              {suggestion}
             </div>
           </div>
         );
@@ -20,7 +24,7 @@ const SuggestionsListComponent = (props) => {
     </div>
   ) : (
     <div className="noSuggestions">
-      user not found
+
     </div>
   );
 };

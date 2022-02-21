@@ -1,7 +1,6 @@
 import Autocomplete from './components/Autocomplete';
 import React, { useEffect, useState } from "react";
 
-
 function App() {
   const [suggestions, setSuggestions] = useState([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
@@ -9,47 +8,49 @@ function App() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [input, setInput] = useState("");
   const [avatarArray, setAvatarArray] = useState([]);
+  const [requestStatus, setRequestStatus] = useState(true)
+
 
   useEffect(() => {
-    if (input != "") {
-      fetch("https://api.github.com/search/users?q=" + input, {
-        headers: {
+    if (input !== "") {
+      fetch("https://api.github.com/search/users?q=" + input + "&page=1&per_page=100%3E", {
 
-        },
-        name: input
       }
       )
         .then(response => response.json())
         .then(data => {
           let nameArr = [];
           let avatarArr = [];
-          for (let i = 0; i < data["items"].length; i++) {
-            if (data["items"][i]["login"].toLowerCase().includes(input.toLowerCase())) {
-              nameArr.push(data["items"][i]["login"]);
-              avatarArr.push(data["items"][i]["avatar_url"])
+          if (data.message) {
+            setRequestStatus(false)
+          } else {
+            if (data["items"]) {
+              for (let i = 0; i < data["items"].length; i++) {
+                if (data["items"][i]["login"].toLowerCase().includes(input.toLowerCase())) {
+                  nameArr.push(data["items"][i]["login"]);
+                  avatarArr.push(data["items"][i]["avatar_url"])
+                }
+              }
             }
+            setRequestStatus(true);
           }
-          console.log(nameArr)
-          const filtered = nameArr.filter(
-            (name) =>
-              name.toLowerCase().includes(input.toLowerCase())
-          );
-          setAvatarArray(avatarArr.slice(0, 4));
-          setSuggestions(nameArr.slice(0, 4));
+          setAvatarArray(avatarArr.slice(0, 7));
+          setSuggestions(nameArr.slice(0, 7));
         })
     }
+
+
   }, [input])
 
   useEffect(() => {
-
-    const unLinked = suggestions.filter(
+    const filtered = suggestions.filter(
       (suggestion) =>
         suggestion.toLowerCase().includes(input.toLowerCase())
     );
-    setFilteredSuggestions(unLinked);
+    setFilteredSuggestions(filtered);
     setActiveSuggestionIndex(0);
     setShowSuggestions(true);
-  }, [suggestions])
+  }, [suggestions, input])
 
 
 
@@ -67,10 +68,14 @@ function App() {
   };
 
 
+
+
   return (
     <div>
-      <h1>Github typeahead</h1>
+      <h1>Github Typeahead</h1>
+      <br />
       <Autocomplete
+        requestStatus={requestStatus}
         avatarArray={avatarArray}
         onChange={onChange}
         onClick={onClick}

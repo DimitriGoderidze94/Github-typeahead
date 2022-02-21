@@ -1,43 +1,74 @@
 * {
   text-align: center;
+
 }
 
 body {
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system,
+    BlinkMacSystemFont,
+    'Times New Roman',
+    'Roboto',
+    'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(68, 82, 212);
 
+  text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  display: inline-block;
+  width: 280px;
+  background-color: rgb(188, 202, 60);
+  color: rgb(5, 5, 75);
 }
 
 .container {
-  width: 100%;
-
+  width: 98%;
+  background-color: blanchedalmond;
   text-align: center;
-  min-height: 70vh;
+  min-height: 82vh;
+  margin: auto;
+  border-radius: 1%;
 }
 
+input {
+  margin: 1%;
+  height: 30px;
+  font-size: 19px;
+  width: 270px;
+  background-color: rgb(91, 52, 129);
+  color: white;
+  border-radius: 10%;
+}
+
+/* .token {
+  font-size: 15px;
+  height: 20px;
+} */
 
 .suggestions {
-  width: 500px;
+  font-size: 20px;
+  width: 280px;
   display: block;
   margin: auto;
+  font-weight: 800;
+  color: rgb(2, 2, 37);
 
-  border: 1px solid black;
 }
 
 
 .suggestionactive {
-  height: 15vh;
-  border: 1px solid black;
+  height: 8vh;
   position: relative;
+  margin-top: 2%;
+  border-radius: 5%;
+  background-color: rgb(81, 142, 233);
+  box-shadow: 2px 2px rgb(6, 34, 77);
+  text-shadow: 0.5px 0.5px rgb(2, 16, 37);
 }
 
 .nameContainer {
@@ -47,7 +78,7 @@ code {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   display: inline-block;
-  right: 50%;
+  left: 25%;
 }
 
 .avatarContainer {
@@ -57,10 +88,22 @@ code {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   display: inline-block;
-  left: 50%;
+  right: 80%;
 }
 
 .avatarImg {
-  width: 50px;
-  height: 50px;
+  width: 6vh;
+  height: 6vh;
+}
+
+.noSuggestions {
+  font-size: 40px;
+  width: 280px;
+  display: block;
+  margin: auto;
+  margin-top: 5%;
+  font-weight: 800;
+  color: rgb(2, 2, 37);
+  background-color: rgb(138, 236, 73);
+  border-radius: 10%;
 }
