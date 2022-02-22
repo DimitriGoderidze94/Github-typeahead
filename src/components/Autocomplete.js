@@ -7,7 +7,7 @@ const Autocomplete = (props) => {
             <input
                 type="text"
                 onChange={props.onChange}
-                value={props.input}
+                defaultValue={""}
             />
             {props.showSuggestions && props.input &&
                 <SuggestionsListComponent

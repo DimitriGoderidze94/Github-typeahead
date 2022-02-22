@@ -9,11 +9,14 @@ function App() {
   const [input, setInput] = useState("");
   const [avatarArray, setAvatarArray] = useState([]);
   const [requestStatus, setRequestStatus] = useState(true)
+  const [timer, setTimer] = useState(null);
+
 
 
   useEffect(() => {
+
     if (input !== "") {
-      fetch("https://api.github.com/search/users?q=" + input + "&page=1&per_page=100%3E", {
+      fetch("https://api.github.com/search/users?q=" + input + "&per_page=100", {
 
       }
       )
@@ -36,6 +39,7 @@ function App() {
           }
           setAvatarArray(avatarArr.slice(0, 7));
           setSuggestions(nameArr.slice(0, 7));
+          console.log(data)
         })
     }
 
@@ -56,7 +60,16 @@ function App() {
 
 
   const onChange = (e) => {
-    setInput(e.target.value);
+
+    if (timer) {
+      clearTimeout(timer);
+      setTimer(null);
+    }
+    setTimer(
+      setTimeout(() => {
+        setInput(e.target.value);
+      }, 500)
+    );
   };
 
   const onClick = (e) => {
