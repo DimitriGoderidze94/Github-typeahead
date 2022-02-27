@@ -39,7 +39,6 @@ function App() {
           }
           setAvatarArray(avatarArr.slice(0, 7));
           setSuggestions(nameArr.slice(0, 7));
-          console.log(data)
         })
     }
 
